@@ -1,7 +1,6 @@
 package com.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Theatre {
     private final String THEATRE_NAME;
@@ -24,18 +23,16 @@ public class Theatre {
     }
 
     public boolean reserveSeat(String seatNumber){
-        Seat requestedSeat = null;
-        for(Seat s : seatsList){
-            if(s.getSeatNumber().equals(seatNumber)){
-                requestedSeat = s;
-                break;
-            }
+        Seat requestedSeat = new Seat(seatNumber);
+        int num = Collections.binarySearch(seatsList,requestedSeat,null);
+        if(num>=0){
+            return seatsList.get(num).reserve();
         }
-        if(requestedSeat==null){
+        else{
             System.out.println("there is no seat " + seatNumber);
             return false;
         }
-        return requestedSeat.reserve();
+
     }
 
 

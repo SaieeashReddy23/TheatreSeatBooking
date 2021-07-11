@@ -1,6 +1,6 @@
 package com.example;
 
-public class Seat {
+public class Seat implements Comparable<Seat>{
     private final String seatNumber;
     private boolean reserved=false;
 
@@ -40,5 +40,8 @@ public class Seat {
         }
     }
 
-
+    @Override
+    public int compareTo(Seat seat) {
+        return this.seatNumber.compareTo(seat.seatNumber);
+    }
 }
